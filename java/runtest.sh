@@ -1,1 +1,1 @@
-mvn test
+clear; mvn test

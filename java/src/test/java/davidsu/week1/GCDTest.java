@@ -11,13 +11,13 @@ public class GCDTest
     /**
      * Rigorous Test :-)
      */
-    @Test
+    // @Test
     public void gcd() {
         assertEquals(GCD.gcd_naive(7, 14), 7);
         assertEquals(GCD.gcd_naive(25, 30), 5);
         assertEquals(GCD.gcd_naive(45, 81), 9);
     }
-    @Test
+    // @Test
     public void lcm() {
         assertEquals(LCM.lcm_naive(10, 15), 30);
     }
