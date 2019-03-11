@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class LCM {
-  private static long lcm_naive(int a, int b) {
-    for (long l = a < b ? b : a; l < (long) a * b; ++l)
-      if (l % a == 0 && l % b == 0)
-        return l;
+  private static int gcd_naive(int a, int b) {
+    return a%b == 0 ? b : gcd_naive(b, a%b);
+  }
+  public static long lcm_naive(int a, int b) {
 
-    return (long) a * b;
+    return ((long) a * b)/gcd_naive(a,b);
   }
 
   public static void main(String args[]) {

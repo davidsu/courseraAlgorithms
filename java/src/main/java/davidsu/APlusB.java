@@ -1,4 +1,3 @@
-package davidsu;
 import java.util.Scanner;
 
 class APlusB {
