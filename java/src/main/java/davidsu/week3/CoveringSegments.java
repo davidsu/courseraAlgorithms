@@ -1,24 +1,41 @@
 import java.util.*;
+import java.lang.Math;
 
 public class CoveringSegments {
 
-    private static int[] optimalPoints(Segment[] segments) {
-        //write your code here
-        int[] points = new int[2 * segments.length];
-        for (int i = 0; i < segments.length; i++) {
-            points[2 * i] = segments[i].start;
-            points[2 * i + 1] = segments[i].end;
+    public static int[] optimalPoints(Segment[] segments) {
+        LinkedList<Integer> points = new LinkedList<Integer>();
+        Arrays.sort(segments, (Segment a,Segment b) -> a.start - b.start);
+        int i = -1;
+        Segment curr = null;
+        for (Segment seg: segments) {
+            Segment newCurr = Segment.segMerge(curr, seg);
+            if(!newCurr.isValidSegment()) {
+                points.add(curr.end);
+                newCurr = seg;
+            }
+            curr = newCurr;
         }
-        return points;
+        points.add(curr.end);
+        return points.stream().mapToInt(q->q).toArray();
     }
 
-    private static class Segment {
-        int start, end;
+    public static class Segment {
+        public int start, end;
 
+        public static Segment segMerge(Segment seg1, Segment seg2) {
+            return new Segment(
+                    seg1 == null ? seg2.start : Math.max(seg1.start, seg2.start),
+                    seg1 == null ? seg2.end : Math.min(seg1.end, seg2.end)
+                    );
+        }
+        public boolean isSinglePoint() { return start - end == 0; }
+        public boolean isValidSegment() { return end - start >= 0; }
         Segment(int start, int end) {
             this.start = start;
             this.end = end;
         }
+        public String toString(){return "{ " + this.start + ", " + this.end + " }";}
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
