@@ -1,11 +1,16 @@
 import java.util.*;
+import java.util.stream.*;
+import java.math.BigInteger;
+import java.io.*;
 
 public class DotProduct {
-    private static long maxDotProduct(int[] a, int[] b) {
-        //write your code here
+    public static long maxDotProduct(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+
         long result = 0;
         for (int i = 0; i < a.length; i++) {
-            result += a[i] * b[i];
+            result += (long) a[i] * b[i];
         }
         return result;
     }

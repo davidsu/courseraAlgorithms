@@ -6,7 +6,6 @@ public class CoveringSegments {
     public static int[] optimalPoints(Segment[] segments) {
         LinkedList<Integer> points = new LinkedList<Integer>();
         Arrays.sort(segments, (Segment a,Segment b) -> a.start - b.start);
-        int i = -1;
         Segment curr = null;
         for (Segment seg: segments) {
             Segment newCurr = Segment.segMerge(curr, seg);
