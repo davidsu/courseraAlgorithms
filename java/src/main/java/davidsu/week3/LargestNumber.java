@@ -1,13 +1,15 @@
 import java.util.*;
+import java.util.stream.*;
 
 public class LargestNumber {
-    private static String largestNumber(String[] a) {
-        //write your code here
-        String result = "";
-        for (int i = 0; i < a.length; i++) {
-            result += a[i];
-        }
-        return result;
+    public static String largestNumber(String[] arr) {
+        return String.join(
+                "",
+                Stream.of(arr)
+                    .sorted((a,b) -> (b+a).compareTo(a+b))
+                    .toArray(size -> new String[size])
+                );
+
     }
 
     public static void main(String[] args) {

@@ -1,9 +1,20 @@
 import java.util.*;
 
 public class DifferentSummands {
-    private static List<Integer> optimalSummands(int n) {
-        List<Integer> summands = new ArrayList<Integer>();
-        //write your code here
+
+    public static List<Integer> optimalSummands(int n) {
+        var summands = new ArrayList<Integer>();
+        var i = 0;
+        while(n > 0) {
+            i++;
+            if(2*i+1 <= n) {
+                summands.add(i);
+                n-=i;
+            } else {
+                summands.add(n);
+                n=0;
+            }
+        }
         return summands;
     }
     

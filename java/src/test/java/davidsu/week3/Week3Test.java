@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Week3Test
 {
-    // @Test
+    @Test
     public void shouldAnswerWithTrue()
     {
         assertEquals(CarFueling.computeMinRefills(1, 3, new int[]{1,2,3,4,5,6,7,8,9,10}), 0);
@@ -25,7 +25,7 @@ public class Week3Test
         assertEquals(CarFueling.computeMinRefills(700, 200, new int[]{100, 400, 600}), -1);
         assertEquals(CarFueling.computeMinRefills(00, 00, new int[]{100, 200, 300, 400}), 0);
     }
-    // @Test
+    @Test
     public void fractional_Knapsack()
     {
         assertEquals(FractionalKnapsack.getOptimalValue(10, new int[]{1}, new int[]{10}),  1, 0);
@@ -33,7 +33,7 @@ public class Week3Test
         assertEquals(FractionalKnapsack.getOptimalValue(10, new int[]{5, 10}, new int[]{1, 10}),  14, 0);
     }
 
-    // @Test
+    @Test
     public void change() {
         assertEquals(Change.getChange(10), 1);
         assertEquals(Change.getChange(3), 3);
@@ -65,4 +65,16 @@ public class Week3Test
         assertEquals(DotProduct.maxDotProduct(new int[]{1,3,5}, new int[]{2,4,1}), 27);
         assertEquals(DotProduct.maxDotProduct(new int[]{2,3, -1, -3}, new int[]{1,2,3,-1}), 15);
     }
+
+    @Test
+    public void summands() {
+        assertEquals(DifferentSummands.optimalSummands(3), new ArrayList<Integer>(Arrays.asList(1,2)));
+        assertEquals(DifferentSummands.optimalSummands(6), new ArrayList<Integer>(Arrays.asList(1,2,3)));
+        assertEquals(DifferentSummands.optimalSummands(8), new ArrayList<Integer>(Arrays.asList(1,2,5)));
+    }
+     @Test
+     public void largestNumber() {
+         assertEquals(LargestNumber.largestNumber(new String[]{ "9", "1", "2" }), "921");
+         assertEquals(LargestNumber.largestNumber(new String[]{ "21", "2" }), "221");
+     }
 }
