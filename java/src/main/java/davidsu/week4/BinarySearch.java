@@ -1,20 +1,18 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class BinarySearch {
 
-    static int binarySearch(int[] a, int x) {
-        int left = 0, right = a.length;
-        //write your code here
-
-        return -1;
+    static int binarySearch(int[] a, int val, int sidx, int bidx) {
+        if(bidx < sidx) return -1;
+        int curidx = (sidx + bidx) / 2;
+        if(a[curidx] == val) return curidx;
+        if(val < a[curidx]) return binarySearch(a, val, sidx, curidx - 1);
+        return binarySearch(a, val, curidx + 1, bidx);
     }
-
-    static int linearSearch(int[] a, int x) {
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == x) return i;
-        }
-        return -1;
+    static int binarySearch(int[] a, int x) {
+        return binarySearch(a, x, 0, a.length -1);
     }
 
     public static void main(String[] args) {
@@ -29,10 +27,12 @@ public class BinarySearch {
         for (int i = 0; i < m; i++) {
           b[i] = scanner.nextInt();
         }
+        String res = "";
         for (int i = 0; i < m; i++) {
+            res += binarySearch(a, b[i]) + " ";
             //replace with the call to binarySearch when implemented
-            System.out.print(linearSearch(a, b[i]) + " ");
         }
+        System.out.print(res);
     }
     static class FastScanner {
         BufferedReader br;

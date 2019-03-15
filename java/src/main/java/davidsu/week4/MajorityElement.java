@@ -2,15 +2,17 @@ import java.util.*;
 import java.io.*;
 
 public class MajorityElement {
-    private static int getMajorityElement(int[] a, int left, int right) {
-        if (left == right) {
-            return -1;
+    public static int getMajorityElement(int[] a) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int majority = a.length/2;
+        for(int i: a) {
+            Integer cur = map.get(i);
+            cur = cur == null ? 1 : cur + 1;
+            if(cur > majority) return 1;
+            map.put(i, cur);
         }
-        if (left + 1 == right) {
-            return a[left];
-        }
-        //write your code here
         return -1;
+
     }
 
     public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class MajorityElement {
         for (int i = 0; i < n; i++) {
             a[i] = scanner.nextInt();
         }
-        if (getMajorityElement(a, 0, a.length) != -1) {
+        if (getMajorityElement(a) != -1) {
             System.out.println(1);
         } else {
             System.out.println(0);

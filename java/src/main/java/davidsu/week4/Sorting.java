@@ -4,34 +4,40 @@ import java.util.*;
 public class Sorting {
     private static Random random = new Random();
 
+    private static void swap(int[] a, int i, int j) {
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
     private static int[] partition3(int[] a, int l, int r) {
-      //write your code here
-
-
       int m1 = l;
       int m2 = r;
+      int middleidx = l;
+      int x = a[middleidx];
+
+      // System.out.println("middle = " + x);
+      for(int i = l + 1; i<=m2 ;) {
+          // for(int q: a) System.out.print(q+" ");
+          // System.out.println("#############################");
+          if(a[i] == x) {
+              swap(a, i, middleidx);
+              middleidx++;
+              i++;
+          }else if(a[i] < x) {
+              swap(a, i, m1);
+              middleidx++;
+              m1++;
+              i++;
+          } else {
+              swap(a, i, m2);
+              m2--;
+          }
+      }
       int[] m = {m1, m2};
       return m;
     }
 
-    private static int partition2(int[] a, int l, int r) {
-        int x = a[l];
-        int j = l;
-        for (int i = l + 1; i <= r; i++) {
-            if (a[i] <= x) {
-                j++;
-                int t = a[i];
-                a[i] = a[j];
-                a[j] = t;
-            }
-        }
-        int t = a[l];
-        a[l] = a[j];
-        a[j] = t;
-        return j;
-    }
-
-    private static void randomizedQuickSort(int[] a, int l, int r) {
+    public static void randomizedQuickSort(int[] a, int l, int r) {
         if (l >= r) {
             return;
         }
@@ -40,9 +46,12 @@ public class Sorting {
         a[l] = a[k];
         a[k] = t;
         //use partition3
-        int m = partition2(a, l, r);
-        randomizedQuickSort(a, l, m - 1);
-        randomizedQuickSort(a, m + 1, r);
+        int[] m = partition3(a, l, r);
+        int ml = m[0];
+        int mr = m[1];
+        // System.out.println(ml + " " + mr);
+        randomizedQuickSort(a, l, ml - 1);
+        randomizedQuickSort(a, mr + 1, r);
     }
 
     public static void main(String[] args) {
