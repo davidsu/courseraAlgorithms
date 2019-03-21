@@ -1,0 +1,16 @@
+{
+  "name": "data_structure",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "David <davidsu@wix.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "execa": "^1.0.0",
+    "fs-extra": "^7.0.1",
+    "jasmine": "^3.3.1",
+    "jest": "^24.5.0"
+  }
+}
