@@ -12,7 +12,7 @@ describe('tree_height', () => {
 
     java.getTests(srcFile).forEach(test => {
         it(`test case ${test.fileName}: should return ${test.answer}`, async () => {
-            const a = await shell('java tree_height ', {
+            const a = await shell('java -Xmx1024m tree_height ', {
                 cwd: java.root + '/gen',  
                 input: test.input,
                 encoding: 'utf8'
