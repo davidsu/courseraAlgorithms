@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 class Request {
@@ -20,21 +21,39 @@ class Response {
 
     public boolean dropped;
     public int start_time;
+    public String toString() { return String.format("start_time: %s, dropped: %s", start_time, dropped);}
 }
 
 class Buffer {
     public Buffer(int size) {
         this.size_ = size;
-        this.finish_time_ = new ArrayList<Integer>();
+        this.finish_time_ = new LinkedList<Integer>();
     }
 
+    public Response processRequest(Request request) {
+        int processStart = finish_time_.isEmpty() ? request.arrival_time : finish_time_.peekLast();
+        Response result = new Response(false, processStart);
+        finish_time_.add(request.process_time + processStart);
+        // System.out.println(result);
+        return result;
+    }
+    public boolean canProcess() {
+        return finish_time_.size() < size_;
+    }
+    public void removeInvalids(Request request) {
+        while(!finish_time_.isEmpty() && finish_time_.peek() <= request.arrival_time) finish_time_.remove();
+    }
     public Response Process(Request request) {
+        removeInvalids(request);
+        if(canProcess()) {
+            return processRequest(request);
+        }
         // write your code here
         return new Response(false, -1);
     }
 
     private int size_;
-    private ArrayList<Integer> finish_time_;
+    private LinkedList<Integer> finish_time_;
 }
 
 class process_packages {

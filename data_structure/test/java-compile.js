@@ -24,6 +24,7 @@ function getTests(filePath) {
             return {
                 input: fs.readFileSync(testFile),
                 answer: fs.readFileSync(testAnswerFile, 'utf8').replace('\n', ''),
+                fullAnswer: fs.readFileSync(testAnswerFile, 'utf8'),
                 fileName
             }
         })
